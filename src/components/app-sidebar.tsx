@@ -36,6 +36,7 @@ const PHASE_LABELS: Record<string, string> = {
 
 export function AppSidebar() {
   const {
+    currentView,
     projects,
     currentProjectId,
     setCurrentProjectId,
