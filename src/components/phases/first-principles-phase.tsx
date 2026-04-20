@@ -14,6 +14,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
+import { useAppStore } from '@/lib/store'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import {
   Brain,
@@ -76,7 +77,9 @@ const DEFAULT_DATA: FirstPrinciplesData = {
 }
 
 export function FirstPrinciplesPhase({ projectId, phaseId }: { projectId: string; phaseId: string }) {
-  const { currentProject } = useAppStore()
+  const projects = useAppStore((s) => s.projects)
+  const currentProjectId = useAppStore((s) => s.currentProjectId)
+  const currentProject = projects.find((p) => p.id === currentProjectId) || null
   const [activeTab, setActiveTab] = useState('system')
   const [data, setData] = useState<FirstPrinciplesData>(
     currentProject?.phases?.find((p) => p.phase === 'first_principles')?.data

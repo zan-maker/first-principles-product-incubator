@@ -45,6 +45,7 @@ interface AppState {
   addChatMessage: (message: ChatMessage) => void
   setChatLoading: (loading: boolean) => void
   clearChat: () => void
+  getCurrentProject: () => Project | null
 }
 
 export const useAppStore = create<AppState>((set) => ({
@@ -75,4 +76,8 @@ export const useAppStore = create<AppState>((set) => ({
     set((state) => ({ chatMessages: [...state.chatMessages, message] })),
   setChatLoading: (loading) => set({ chatLoading: loading }),
   clearChat: () => set({ chatMessages: [] }),
+  getCurrentProject: () => {
+    const state = useAppStore.getState()
+    return state.projects.find((p) => p.id === state.currentProjectId) || null
+  },
 }))

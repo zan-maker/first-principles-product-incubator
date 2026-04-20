@@ -55,7 +55,9 @@ const DEFAULT_DATA: ProblemStatementData = {
 }
 
 export function ProblemStatementPhase({ projectId, phaseId }: { projectId: string; phaseId: string }) {
-  const { currentProject, updatePhaseData } = useAppStore()
+  const projects = useAppStore((s) => s.projects)
+  const currentProjectId = useAppStore((s) => s.currentProjectId)
+  const currentProject = projects.find((p) => p.id === currentProjectId) || null
   const [activeTab, setActiveTab] = useState('entry')
   const [data, setData] = useState<ProblemStatementData>(
     currentProject?.phases?.find((p) => p.phase === 'problem_statement')?.data

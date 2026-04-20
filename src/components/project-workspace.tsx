@@ -41,7 +41,10 @@ const PHASES = [
 ]
 
 export function ProjectWorkspace() {
-  const { currentProjectId, currentProject, setCurrentView, projects } = useAppStore()
+  const currentProjectId = useAppStore((s) => s.currentProjectId)
+  const projects = useAppStore((s) => s.projects)
+  const setCurrentView = useAppStore((s) => s.setCurrentView)
+  const currentProject = projects.find((p) => p.id === currentProjectId) || null
   const [currentPhase, setCurrentPhase] = useState(0)
   const [chatOpen, setChatOpen] = useState(false)
   const [loading, setLoading] = useState(true)
@@ -51,7 +54,7 @@ export function ProjectWorkspace() {
     if (!currentProjectId) return
 
     const initPhases = async () => {
-      const project = projects.find((p) => p.id === currentProjectId)
+      const project = useAppStore.getState().getCurrentProject()
       if (!project) return
 
       const existingPhases = project.phases || []

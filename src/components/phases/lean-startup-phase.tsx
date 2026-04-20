@@ -110,7 +110,9 @@ const DEFAULT_DATA: LeanStartupData = {
 }
 
 export function LeanStartupPhase({ projectId, phaseId }: { projectId: string; phaseId: string }) {
-  const { currentProject } = useAppStore()
+  const projects = useAppStore((s) => s.projects)
+  const currentProjectId = useAppStore((s) => s.currentProjectId)
+  const currentProject = projects.find((p) => p.id === currentProjectId) || null
   const [activeTab, setActiveTab] = useState('hypotheses')
   const [data, setData] = useState<LeanStartupData>(
     currentProject?.phases?.find((p) => p.phase === 'lean_startup')?.data

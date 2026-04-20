@@ -89,7 +89,9 @@ const DEFAULT_DATA: TOCData = {
 }
 
 export function TOCPhase({ projectId, phaseId }: { projectId: string; phaseId: string }) {
-  const { currentProject } = useAppStore()
+  const projects = useAppStore((s) => s.projects)
+  const currentProjectId = useAppStore((s) => s.currentProjectId)
+  const currentProject = projects.find((p) => p.id === currentProjectId) || null
   const [activeTab, setActiveTab] = useState('identify')
   const [data, setData] = useState<TOCData>(
     currentProject?.phases?.find((p) => p.phase === 'theory_of_constraints')?.data
