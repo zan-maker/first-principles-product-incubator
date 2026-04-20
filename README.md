@@ -12,7 +12,7 @@
 ## Quick Start
 
 ```bash
-git clone https://github.com/<your-username>/first-principles-product-incubator.git
+git clone https://github.com/zan-maker/first-principles-product-incubator.git
 cd first-principles-product-incubator
 bun install
 bun run db:push
@@ -248,8 +248,8 @@ Two AI-generated demo videos are included:
 
 | Video | Description |
 |-------|-------------|
-| `download/product-incubator-demo.mp4` | Dashboard overview and framework pipeline |
-| `download/workspace-demo.mp4` | Workspace phase navigation walkthrough |
+| [product-incubator-demo.mp4](docs/videos/product-incubator-demo.mp4) | Dashboard overview and framework pipeline |
+| [workspace-demo.mp4](docs/videos/workspace-demo.mp4) | Workspace phase navigation walkthrough |
 
 Screenshots are available in `docs/images/`.
 
